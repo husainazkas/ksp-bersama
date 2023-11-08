@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -16,7 +17,8 @@
   -->
   <base href="/ksp-bersama/">
 
-  <meta name="google-signin-client_id" content="555924355270-kua3g4u63ni0sk6jgsulp7m1sm2obs2n.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="555924355270-kua3g4u63ni0sk6jgsulp7m1sm2obs2n.apps.googleusercontent.com">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -25,37 +27,47 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="ksp_bersama">
+  <meta name="apple-mobile-web-app-title" content="Kelompok 10 - Koperasi">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>ksp_bersama</title>
+  <title>Kelompok 10 - Koperasi</title>
   <link rel="manifest" href="manifest.json">
 
+  <link rel="stylesheet" href="style.css">
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "2252620324";
+    const serviceWorkerVersion = "418470392";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
+
 <body>
+  <div id="loading">
+    <div id="circular-progress"></div>
+    <div id="progress-description"></div>
+  </div>
   <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
+    window.addEventListener('load', function (ev) {
+      const loadingText = document.getElementById('progress-description');
+      loadingText.textContent = "Please wait...";
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
+          engineInitializer.initializeEngine().then(async function(appRunner) {
+            await appRunner.runApp();
+            const loading = document.getElementById("loading");
+            loading.style.display = "none";
           });
         }
       });
     });
   </script>
 </body>
+
 </html>
